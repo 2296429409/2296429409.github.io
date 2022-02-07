@@ -132,8 +132,7 @@
 				getApi: function() {
 					var other = this;
 					// console.log(other.imgtype)
-					//axios.get('http://8.134.127.32:8883/setu/lolicon', {
-					axios.get('https://api.lolicon.app/setu/v2', {
+					axios.get('http://8.134.127.32:8883/setu/lolicon', {
 						params: {
 							r18: other.imgtype.r18,
 							num: other.imgtype.num,
@@ -141,11 +140,9 @@
 							tag: other.imgtype.tag,
 						}
 					}).then(function(response) {
-						//other.elrownum = Math.ceil(other.imgtype.num / 4)
-						//other.imgdate = response.data
-						          alert('1')
+						other.elrownum = Math.ceil(other.imgtype.num / 4)
+						other.imgdate = response.data
 					}).catch(function(error) {
-						alert('2')
 						console.log(error);
 					});
 				},
