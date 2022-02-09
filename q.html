@@ -3,13 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>123</title>
+		<!-- vue -->
 		<script src="/js/vue.js"></script>
-		<!-- 引入样式 -->
+		<!-- element-ui -->
 		<link rel="stylesheet" href="/css/element-ui-index.css">
-		<!-- 引入组件库 -->
 		<script src="/js/element-ui-index.js"></script>
+		<!-- axios -->
 		<script src="/js/axios.min.js"></script>
-		<script src="/js/jquery-3.2.1.min.js"></script>
 	</head>
 	<body>
 
@@ -33,19 +33,20 @@
 					</el-select>
 				</el-col>
 				<el-col :span="4">
-
+					<el-date-picker v-model="imgtype.date" type="date" placeholder="选择日期" value-format="yyyy-MM-dd">
+					</el-date-picker>
 				</el-col>
-				<el-col :span="1" align="middle" style="padding: 10px">
+				<!-- 				<el-col :span="1" align="middle" style="padding: 10px">
 					数量：
 				</el-col>
 				<el-col :span="4">
 					<el-slider v-model="imgtype.num" style="width:200px"></el-slider>
-				</el-col>
+				</el-col> -->
 				<el-col :span="4">
 					<el-button type="primary" @click="getApi">查询</el-button>
 				</el-col>
 			</el-row>
-
+			<el-divider></el-divider>
 			<el-row :gutter="20">
 				<el-col :span="6" v-for="(ocol,icol) in imgdate">
 					<div class="grid-content bg-purple">
@@ -53,7 +54,8 @@
 						<el-card :body-style="{ padding: '0px' }">
 							<!-- <img :src="imgdate[icol].small" class="image" lazy
 								:preview-src-list="srcList"> -->
-							<el-image :src="imgdate[icol].image_urls.medium" lazy>
+							<el-image :src="imgdate[icol].image_urls.medium" :preview-src-list="imgdate[icol].preview"
+								lazy>
 							</el-image>
 							<div style="padding: 14px;">
 								<span>标题:{{imgdate[icol].title}}</span><br>
@@ -61,7 +63,7 @@
 								<span>pid:{{imgdate[icol].id}}</span><br>
 								<div class="bottom clearfix">
 									<time class="time">{{imgdate[icol].uploadDate}}</time>
-									<el-button type="text" class="button" @click="lookimg(icol)">原图
+									<!-- <el-button type="text" class="button" @click="lookimg(icol)">原图 -->
 									</el-button>
 								</div>
 							</div>
@@ -69,12 +71,15 @@
 					</div>
 				</el-col>
 			</el-row>
+			<div id="" align="center" v-if="imgtype.isget">
+				<el-button type="primary" @click="addimg">更多</el-button>
+			</div>
+			
 
 
-			<el-dialog title="收货地址" :visible.sync="dialogTableVisible" width='80%'>
-				<el-image :src="originalurl" >
-				</el-image>
-			</el-dialog>
+			<!-- 			<el-dialog title="收货地址" :visible.sync="dialogTableVisible" width='80%'>
+				<el-image :src="originalurl"></el-image>
+			</el-dialog> -->
 
 		</div>
 
@@ -91,7 +96,10 @@
 					num: 10,
 					keyword: '',
 					tag: '',
-					ranking_type: 'all'
+					ranking_type: 'all',
+					date: new Date(new Date().getTime()-3600 * 1000 * 24),
+					page: 1,
+					isget: false
 				},
 				dialogTableVisible: false,
 				elrownum: 0,
@@ -136,20 +144,21 @@
 					ranking_type: [{
 						value: 'all',
 						label: '所有'
-					}, {
-						value: 'illust',
-						label: '插画'
-					}, {
-						value: 'manga',
-						label: '漫画'
-					}, {
-						value: 'ugoira',
-						label: '动图'
-					}],
-					date:''
+					}
+					// , {
+					// 	value: 'illust',
+					// 	label: '插画'
+					// }, {
+					// 	value: 'manga',
+					// 	label: '漫画'
+					// }, {
+					// 	value: 'ugoira',
+					// 	label: '动图'
+					// },
+					]
 				},
 				imgdate: [],
-				originalurl:''
+				originalurl: ''
 			},
 			beforeCreate() {
 
@@ -157,35 +166,108 @@
 			mounted() {},
 			methods: {
 				getApi: function() {
+					this.imgtype.page=1
+					this.imgtype.isget=true
 					var other = this;
 					// console.log(other.imgtype)
 					axios.get('https://api.acgmx.com/public/ranking', {
-						headers: {'token': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLmiJHmmK_lsI_lrabnlJ8iLCJ1dWlkIjoiNTM2Y2M3ZmMyNGZkNGM3NzlmN2YyMWViN2U2NDViNDEiLCJpYXQiOjE2NDQzMTIzODcsImFjY291bnQiOiJ7XCJlbWFpbFwiOlwiMjI5NjQyOTQwOUBxcS5jb21cIixcImdlbmRlclwiOi0xLFwiaGFzUHJvblwiOjAsXCJpZFwiOjEwNjQsXCJwYXNzV29yZFwiOlwiNTkzYTdjMjE3YTQ2ODE5OWIyMmQxNDRhMDFiM2ZmZGZcIixcInN0YXR1c1wiOjAsXCJ1c2VyTmFtZVwiOlwi5oiR5piv5bCP5a2m55SfXCJ9IiwianRpIjoiMTA2NCJ9.on_mLULOZtQUAuY9wFZvOsHjGilM_kz7bEyji3JuODs'},
+						headers: {
+							'token': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLmiJHmmK_lsI_lrabnlJ8iLCJ1dWlkIjoiNTM2Y2M3ZmMyNGZkNGM3NzlmN2YyMWViN2U2NDViNDEiLCJpYXQiOjE2NDQzMTIzODcsImFjY291bnQiOiJ7XCJlbWFpbFwiOlwiMjI5NjQyOTQwOUBxcS5jb21cIixcImdlbmRlclwiOi0xLFwiaGFzUHJvblwiOjAsXCJpZFwiOjEwNjQsXCJwYXNzV29yZFwiOlwiNTkzYTdjMjE3YTQ2ODE5OWIyMmQxNDRhMDFiM2ZmZGZcIixcInN0YXR1c1wiOjAsXCJ1c2VyTmFtZVwiOlwi5oiR5piv5bCP5a2m55SfXCJ9IiwianRpIjoiMTA2NCJ9.on_mLULOZtQUAuY9wFZvOsHjGilM_kz7bEyji3JuODs'
+						},
 						params: {
 							ranking_type: other.imgtype.ranking_type,
 							mode: other.imgtype.mode,
-							date: '2020-04-13',
-							per_page: other.imgtype.num,
-							page: 1,
+							date: other.imgtype.date,
+							// per_page: other.imgtype.num,
+							page: other.imgtype.page,
 						}
 					}).then(function(response) {
-						other.elrownum = Math.ceil(response.data.illusts.length/ 4)
+						other.elrownum = Math.ceil(response.data.illusts.length / 4)
 						other.imgdate = response.data.illusts
-						console.log(response.data.illusts);
-						
-						for(var i=0;i<other.imgdate.length;i++){
-							other.imgdate[i].image_urls.medium=other.imgdate[i].image_urls.medium.replace("i.pximg.net","i.pixiv.re")
-							other.imgdate[i].meta_single_page.original_image_url=other.imgdate[i].meta_single_page.original_image_url.replace("i.pximg.net","i.pixiv.re")
-							// other.imgdate[i].image_urls.px_128x128=other.imgdate[i].image_urls.px_128x128.replace("i.pximg.net","i.pixiv.re")
+						// console.log(response.data.illusts);
+
+						for (var i = 0; i < other.imgdate.length; i++) {
+							other.imgdate[i].preview = [];
+							other.imgdate[i].image_urls.medium = other.imgdate[i].image_urls.medium
+								.replace("i.pximg.net", "i.pixiv.re")
+							if (other.imgdate[i].meta_single_page.original_image_url) {
+								other.imgdate[i].meta_single_page.original_image_url = other.imgdate[i]
+									.meta_single_page.original_image_url.replace("i.pximg.net",
+										"i.pixiv.re")
+								other.imgdate[i].preview.push(other.imgdate[i].meta_single_page
+									.original_image_url.replace("i.pximg.net", "i.pixiv.re"))
+
+							} else {
+								for (var x = 0; x < other.imgdate[i].meta_pages.length; x++) {
+									other.imgdate[i].meta_pages[x].image_urls.original = other.imgdate[i]
+										.meta_pages[x].image_urls.original.replace("i.pximg.net",
+											"i.pixiv.re")
+									other.imgdate[i].preview.push(other.imgdate[i].meta_pages[x]
+										.image_urls.original.replace("i.pximg.net", "i.pixiv.re"))
+								}
+							}
 						}
-						
 					}).catch(function(error) {
 						console.log(error);
 					});
 				},
-				lookimg:function(i){
-					this.dialogTableVisible=true
-					this.originalurl=this.imgdate[i].image_urls.large
+				lookimg: function(i) {
+					this.dialogTableVisible = true
+					this.originalurl = this.imgdate[i].meta_single_page.original_image_url
+				},
+				addimg: function() {
+					this.imgtype.page++;
+					var other = this;
+					axios.get('https://api.acgmx.com/public/ranking', {
+						headers: {
+							'token': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLmiJHmmK_lsI_lrabnlJ8iLCJ1dWlkIjoiNTM2Y2M3ZmMyNGZkNGM3NzlmN2YyMWViN2U2NDViNDEiLCJpYXQiOjE2NDQzMTIzODcsImFjY291bnQiOiJ7XCJlbWFpbFwiOlwiMjI5NjQyOTQwOUBxcS5jb21cIixcImdlbmRlclwiOi0xLFwiaGFzUHJvblwiOjAsXCJpZFwiOjEwNjQsXCJwYXNzV29yZFwiOlwiNTkzYTdjMjE3YTQ2ODE5OWIyMmQxNDRhMDFiM2ZmZGZcIixcInN0YXR1c1wiOjAsXCJ1c2VyTmFtZVwiOlwi5oiR5piv5bCP5a2m55SfXCJ9IiwianRpIjoiMTA2NCJ9.on_mLULOZtQUAuY9wFZvOsHjGilM_kz7bEyji3JuODs'
+						},
+						params: {
+							ranking_type: other.imgtype.ranking_type,
+							mode: other.imgtype.mode,
+							date: other.imgtype.date,
+							// per_page: other.imgtype.num,
+							page: other.imgtype.page,
+						}
+					}).then(function(response) {
+						
+					
+						for (var i = 0; i < response.data.illusts.length; i++) {
+							response.data.illusts[i].preview = [];
+							response.data.illusts[i].image_urls.medium = response.data.illusts[i].image_urls.medium
+								.replace("i.pximg.net", "i.pixiv.re")
+							if (response.data.illusts[i].meta_single_page.original_image_url) {
+								response.data.illusts[i].meta_single_page.original_image_url = response.data.illusts[i]
+									.meta_single_page.original_image_url.replace("i.pximg.net",
+										"i.pixiv.re")
+								response.data.illusts[i].preview.push(response.data.illusts[i].meta_single_page
+									.original_image_url.replace("i.pximg.net", "i.pixiv.re"))
+					
+							} else {
+								for (var x = 0; x < response.data.illusts[i].meta_pages.length; x++) {
+									response.data.illusts[i].meta_pages[x].image_urls.original = response.data.illusts[i]
+										.meta_pages[x].image_urls.original.replace("i.pximg.net",
+											"i.pixiv.re")
+									response.data.illusts[i].preview.push(response.data.illusts[i].meta_pages[x]
+										.image_urls.original.replace("i.pximg.net", "i.pixiv.re"))
+								}
+							}
+						}
+						
+						
+						for( var i in response.data.illusts){
+						  other.imgdate.push(response.data.illusts[i]);
+						}
+						
+						other.elrownum = Math.ceil(other.imgdate.length / 4)
+						
+						
+						
+						
+						
+					}).catch(function(error) {
+						console.log(error);
+					});
 				}
 			}
 		})
