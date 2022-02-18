@@ -14,6 +14,18 @@
 	<body>
 
 		<div id="app">
+			
+			
+			<el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+			
+			<!-- <el-dialog title="收货地址" :visible.sync="dialogTableVisible"> -->
+			  <iframe src="https://8.134.127.32/" width="" height=""></iframe>
+			<!-- </el-dialog> -->
+			
+			
+			
+			
+			
 
 			<h1>xiaohu</h1>
 
@@ -158,7 +170,8 @@
 					]
 				},
 				imgdate: [],
-				originalurl: ''
+				originalurl: '',
+				dialogTableVisible: false
 			},
 			beforeCreate() {
 

@@ -142,7 +142,7 @@
 						other.elrownum = Math.ceil(other.imgtype.num / 4)
 						other.imgdate = response.data
 					}).catch(function(error) {
-						console.log(error);
+						console.log(error.data);
 					});
 				},
 				lookimg:function(i){
