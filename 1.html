@@ -3,7 +3,32 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	</head>
 	<body>
+		<h1>验证通过</h1> <br>
+		
+		<a href="javascript:window.opener=null;window.open('','_self');window.close();">关闭</a>
+		
+		<script type="text/javascript">
+			function back(){
+				console.log(1)
+				window.opener=null;
+				window.open('','_self');
+				window.close();
+			}
+		</script>
+		<style type="text/css">
+			a {
+			    background-color: #4CAF50; /* Green */
+			    border: none;
+			    color: white;
+			    padding: 15px 32px;
+			    text-align: center;
+			    text-decoration: none;
+			    display: inline-block;
+			    font-size: 16px;
+			}
+		</style>
 	</body>
 </html>
