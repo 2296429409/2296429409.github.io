@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var form = new FormData();
+			var settings = {
+			  "url": "https://localhost:8081/x",
+			  "method": "GET",
+			  "timeout": 0,
+			  "processData": false,
+			  "mimeType": "multipart/form-data",
+			  "contentType": false
+			};
+			
+			$.ajax(settings).done(function (response) {
+			  console.log(response);
+			});
+		</script>
+	</body>
+</html>

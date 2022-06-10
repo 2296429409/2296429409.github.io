@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>videojs-contrib-hls embed</title>
+  <script src="js/TcPlayer-2.4.1.js" charset="utf-8"></script>
+  <script src="js/hls.min.0.12.4.js" charset="utf-8"></script>
+</head>
+<body>
+  <h1>Video.js Example Embed</h1>
+
+  <div id="id_test_video" style="width:100%; height:auto;"></div>
+  
+  <script>
+  var player = new TcPlayer('id_test_video', {
+    "m3u8": "m3u8/lucene.m3u8", //请替换成实际可用的播放地址
+    "autoplay" : true,      //iOS 下 safari 浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
+    "poster" : "http://www.test.com/myimage.jpg",
+    "width" :  '480',//视频的显示宽度，请尽量使用视频分辨率宽度
+    "height" : '320'//视频的显示高度，请尽量使用视频分辨率高度
+});
+  </script>
+  
+</body>
+</html>

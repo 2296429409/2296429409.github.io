@@ -12,159 +12,63 @@
 
 	</head>
 	<body>
-
-		<div id="app">
-
-			<h1>xiaohu</h1>
-
-			<el-row>
-				<el-col :span="4">
-					类型：<el-select v-model="imgtype.r18" placeholder="请选择">
-						<el-option v-for="item in imgtypeoptions.r18" :key="item.value" :label="item.label"
-							:value="item.value">
-						</el-option>
-					</el-select>
-				</el-col>
-				<el-col :span="4">
-					标题：<el-input v-model="imgtype.keyword" placeholder="" style="width:200px"></el-input>
-				</el-col>
-				<el-col :span="4">
-					标签：<el-input v-model="imgtype.tag" placeholder="" style="width:200px"></el-input>
-
-				</el-col>
-				<el-col :span="1" align="middle" style="padding: 10px">
-					数量：
-				</el-col>
-				<el-col :span="4">
-					<el-slider v-model="imgtype.num" style="width:200px"></el-slider>
-				</el-col>
-				<el-col :span="4">
-					<el-button type="primary" @click="getApi">查询</el-button>
-				</el-col>
-			</el-row>
-
-			<el-row :gutter="20">
-				<el-col :span="6" v-for="(ocol,icol) in imgdate">
-					<div class="grid-content bg-purple">
-						<!-- {{imgoriginal[irow*4+icol]}} -->
-						<el-card :body-style="{ padding: '0px' }">
-							<!-- <img :src="imgdate[icol].small" class="image" lazy
-								:preview-src-list="srcList"> -->
-							<el-image :src="imgdate[icol].small" lazy>
-							</el-image>
-							<div style="padding: 14px;">
-								<span>标题:{{imgdate[icol].title}}</span><br>
-								<span>作者:{{imgdate[icol].author}}</span><br>
-								<span>pid:{{imgdate[icol].pid}}</span><br>
-								<div class="bottom clearfix">
-									<time class="time">{{imgdate[icol].uploadDate}}</time>
-									<el-button type="text" class="button" @click="lookimg(icol)">原图
-									</el-button>
-								</div>
-							</div>
-						</el-card>
-					</div>
-				</el-col>
-			</el-row>
-
-
-			<el-dialog title="收货地址" :visible.sync="dialogTableVisible" width='80%'>
-				<el-image :src="originalurl" >
-				</el-image>
-			</el-dialog>
-
-		</div>
-
-
-
-
-	</body>
-	<script>
-		new Vue({
-			el: "#app",
-			data: {
-				imgtype: {
-					r18: '0',
-					num: 10,
-					keyword: '',
-					tag: '',
-					size: 'original'
-				},
-				dialogTableVisible: false,
-				elrownum: 0,
-				imgtypeoptions: {
-					r18: [{
-						value: '0',
-						label: '正常'
-					}, {
-						value: '1',
-						label: '暴露'
-					}, {
-						value: '2',
-						label: '随机'
-					}],
-					size: [{
-						value: 'original',
-						label: '原图'
-					}, {
-						value: 'regular',
-						label: '普通'
-					}, {
-						value: 'small',
-						label: '小图'
-					}, {
-						value: 'thumb',
-						label: '小小图'
-					}, {
-						value: 'mini',
-						label: '最小'
-					}],
-				},
-				imgdate: [],
-				originalurl:''
-			},
-			beforeCreate() {
-
-			},
-			mounted() {},
-			methods: {
-				getApi: function() {
-					var other = this;
-					// console.log(other.imgtype)
-					axios.get('https://8.134.127.32/setu/setu/lolicon', {
-						params: {
-							r18: other.imgtype.r18,
-							num: other.imgtype.num,
-							keyword: other.imgtype.keyword,
-							tag: other.imgtype.tag,
-						}
-					}).then(function(response) {
-						other.elrownum = Math.ceil(other.imgtype.num / 4)
-						other.imgdate = response.data
-					}).catch(function(error) {
-						if (error.response) {
-						      // The request was made and the server responded with a status code
-						      // that falls out of the range of 2xx
-						      console.log(error.response.data);
-						      console.log(error.response.status);
-						      console.log(error.response.headers);
-						    } else if (error.request) {
-						      // The request was made but no response was received
-						      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-						      // http.ClientRequest in node.js
-						      console.log(error.request);
-						    } else {
-						      // Something happened in setting up the request that triggered an Error
-						      console.log('Error', error.message);
-						    }
-						    console.log(error.config);
-					});
-				},
-				lookimg:function(i){
-					this.dialogTableVisible=true
-					this.originalurl=this.imgdate[i].original
+		
+		
+		<script type="text/javascript">
+			
+			var json=JSON.parse('{"state":0,"msg":"操作成功","data":[{"id":"96729560630337536","tenantId":"96729560575811584","pid":null,"path":"96729560630337536.","name":"华微软件","sortOrder":1,"creator":null,"createdTime":"2021-04-06T02:41:10.000+0000","updator":null,"updatedTime":null,"deleted":0,"deletedTime":null,"userList":null,"children":[{"ouId":"96729560630337536","orgUnit":{"path":"96729560630337536."},"name":"马灿城","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH0500A0000174","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0500","id":"96729584982466575","deviceName":"HWIH0500A0000174","simCode":"","status":1},"userId":"97172220145618943","account":"mcc","status":1},{"ouId":"96729560630337536","orgUnit":{"path":"96729560630337536."},"name":"陈城","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH0500A0000127","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0500","id":"96729584982466570","deviceName":"HWIH0500A0000127","simCode":"","status":1},"userId":"97172738226839552","account":"chencheng","status":1},{"ouId":"96729560630337536","orgUnit":{"path":"96729560630337536."},"name":"卢天城54X","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH0500A000054X","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0500","id":"96729584992466561","deviceName":"HWIH0500A000054X","simCode":"","status":1},"userId":"152618082302013440","account":"","status":0},{"ouId":"96729560630337536","orgUnit":{"path":"96729560630337536."},"name":"卢天城03X","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH0500A000003X","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0500","id":"96729584982466561","deviceName":"HWIH0500A000003X","simCode":"","status":1},"userId":"152618165030465536","account":"","status":0},{"id":"96741689584427008","tenantId":"96729560575811584","pid":"96729560630337536","path":"96729560630337536.96741689584427008.","name":"组织委员会","sortOrder":1,"creator":"96729560768749568","createdTime":"2021-04-06T03:29:22.000+0000","updator":"96729560768749568","updatedTime":"2021-04-07T08:36:12.000+0000","deleted":0,"deletedTime":null,"userList":null,"children":[{"ouId":"96741689584427008","orgUnit":{"path":"96729560630337536.96741689584427008."},"name":"卢天城","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH05010000904X","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0501","id":"96729584978272557","deviceName":"HWIH05010000904X","simCode":"","status":1},"userId":"97183200993665025","account":"lutc","status":1}],"totalNumber":1,"onlineNumber":0,"totalOfAll":1,"onlineOfAll":0},{"id":"97180212606590976","tenantId":"96729560575811584","pid":"96729560630337536","path":"96729560630337536.97180212606590976.","name":"建设施工部","sortOrder":1,"creator":"96729560768749568","createdTime":"2021-04-07T08:31:54.000+0000","updator":"96729560768749568","updatedTime":"2021-04-07T08:37:05.000+0000","deleted":0,"deletedTime":null,"userList":null,"children":[{"id":"97180785787592704","tenantId":"96729560575811584","pid":"97180212606590976","path":"96729560630337536.97180212606590976.97180785787592704.","name":"建设一部","sortOrder":1,"creator":"96729560768749568","createdTime":"2021-04-07T08:34:11.000+0000","updator":null,"updatedTime":null,"deleted":0,"deletedTime":null,"userList":null,"children":[{"ouId":"97180785787592704","orgUnit":{"path":"96729560630337536.97180212606590976.97180785787592704."},"name":"韦泽城","tenantId":"96729560575811584","device":{"specType":0,"serialNumber":"HWIH0500A0000025","onlineStatus":"0","tenantId":"96729560575811584","specModel":"HW-IH-0500","id":"96729584982466560","deviceName":"HWIH0500A0000025","simCode":"","status":1},"userId":"97172613924446208","account":"weizc","status":1}],"totalNumber":1,"onlineNumber":0,"totalOfAll":1,"onlineOfAll":0}],"totalNumber":0,"onlineNumber":0,"totalOfAll":1,"onlineOfAll":0}],"totalNumber":4,"onlineNumber":0,"totalOfAll":6,"onlineOfAll":0}]}');
+			console.log(json)
+			
+			
+			
+			
+			var arr=new Array()
+			function f1(data){
+				for(k in data){
+					if(data[k].children!=undefined){
+						f1(data[k].children)
+					}else{
+						data[k].device.name=data[k].name
+						arr.push(data[k].device)
+					}
 				}
 			}
-		})
-	</script>
+			f1(json.data)
+			console.log(arr)
+			
+			
+			
+			
+			var arr=new Array()
+			arr.push("12312")
+			arr.push("awadwd")
+			console.log( JSON.stringify(arr))
+			createAndDownloadFile();
+			function createAndDownloadFile() {
+				var aTag = document.createElement('a');
+				var blob = new Blob([JSON.stringify(arr)], {type: "application/json"})
+				aTag.download = 'fileName';
+				aTag.href = URL.createObjectURL(blob);
+				aTag.click();
+				URL.revokeObjectURL(blob);
+			}
+/* 			
+			let formData = new FormData();
+			formData.append("fileName", "文件名");
+			formData.append('stream',  this.file);
+			// formData.append("fileTemplateConfs", new Blob([JSON.stringify({"title": "测试标题", "type": 3})], {type: "application/json"}));
+			console.log(JSON.stringify(fileData.fileTemplateConfs))
+			formData.append("fileTemplateConfs",  new Blob([JSON.stringify(fileData.fileTemplateConfs)], {type: "application/json"}));
+			axios.post(`http://0.0.0.0:8082/test`, formData, {headers: {'Content-Type': 'multipart/form-data'}})
+			  .then(response => {
+			
+			  }).catch(() => {
+			});
+ */
+		</script>
+		
+		
+
+	</body>
+
 </html>
