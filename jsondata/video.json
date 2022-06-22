@@ -1,0 +1,33 @@
+{
+    "data": [
+        {
+            "type1": [
+                {
+                    "path": "1.m3u8",
+                    "preview": "1.mp4",
+                    "cover": "1.jpg",
+                    "name": "xiaxh",
+                    "size": "5g",
+                    "duration": "13:15"
+                },
+                {
+                    "path": "1.m3u8",
+                    "preview": "1.mp4",
+                    "cover": "1.jpg",
+                    "name": "xiaxh",
+                    "size": "5g",
+                    "duration": "13:15"
+                },
+                {
+                    "path": "1.m3u8",
+                    "preview": "1.mp4",
+                    "cover": "1.jpg",
+                    "name": "xiaxh",
+                    "size": "5g",
+                    "duration": "13:15"
+                }
+            ]
+        }
+    ],
+    "time": "2022-01-01 12:01"
+}

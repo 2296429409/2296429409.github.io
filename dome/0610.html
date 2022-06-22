@@ -7,18 +7,19 @@
 	</head>
 	<body>
 		<script type="text/javascript">
-			var form = new FormData();
-			var settings = {
-			  "url": "https://localhost:8081/x",
-			  "method": "GET",
-			  "timeout": 0,
-			  "processData": false,
-			  "mimeType": "multipart/form-data",
-			  "contentType": false
-			};
-			
-			$.ajax(settings).done(function (response) {
-			  console.log(response);
+			$(function() {
+				$.ajax({
+					//请求方式
+					type: "GET",
+					//文件位置
+					url: "/2296429409.github.io/dome/js/video.json",
+					//返回数据格式为json,也可以是其他格式如
+					dataType: "json",
+					//请求成功后要执行的函数，拼接html
+					success: function(data) {
+						console.log(data)
+					}
+				});
 			});
 		</script>
 	</body>
