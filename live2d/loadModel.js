@@ -2,7 +2,7 @@ var LIVE2DCUBISMCORE = Live2DCubismCore
 //如果资源在CDN，一定要写http://或者https://否则会以本域名请求且为相对路径
 //模型的model3.json文件路径
 var baseModelPath = window.location.protocol+'//'+ window.location.host+"/live2d/model/";
-var modelNames = ["abeikelongbi_3","aidang_2","aierdeliqi_4","aierdeliqi_5","ailunsamuna_2","ailunsamuna_2_hx","aimierbeierding_2","aimierbeierding_3","aisaikesi_4","baerdimo_5","banrenma_2","beierfasite_2","beikaluolaina_2","biaoqiang_3","bisimai_2","bola_2","boyixi_2","bulaimodun_2","bulaimodun_4","chaijun_3","chaijun_4","chuixue_3","dafeng_2","dafeng_4","daofeng_4","deyizhi_3","dujiaoshou_4","dujiaoshou_6","dunkeerke_2","edu_3","edu_4","genaisennao_2","guangrong_3","heitaizi_2","hemin_2","hemin_3","huangjiafangzhou_3","huonululu_3","huonululu_5","jialisuoniye_3","jialisuoniye_4","jianye_2","jianye_2_hx","junhe_5","kelifulan_3","kubo_2","lafei","lafei_4","lingbo","lingbo_10","linuo_3","lisailiu_2","lisailiu_3","longfeng_2","luyijiushi_2","mingshi","nengdai_2","ninghai_4","ougen_5","ouruola_4","pinghai_4","pinghai_6","qibolin_2","qiye_7","rangbaer_3","rangbaer_4","shengluyisi_2","shengluyisi_3","shengluyisi_4","shitelasai_2","sipeibojue_5","taiyuan_2","tianlangxing_3","tierbici_2","weineituo_2","weixi_2","weiyan_2","wuqi_2","xianghe_2","xixuegui_4","xuefeng_3","xukufu_2","xukufu_3","xukufu_3_hx","yichui_2","z23","z46_2","z46_3","z46_4","zhala_2"];
+var modelNames = ["abeikelongbi_3","aisaikesi_4","beikaluolaina_2","bola_2","boyixi_2","chaijun_3","dafeng_2","dafeng_4","dunkeerke_2","guangrong_3","hemin_2","jialisuoniye_3","jialisuoniye_4","jianye_2","lisailiu_2","luyijiushi_2","ougen_5","shengluyisi_2","shengluyisi_3","shengluyisi_4","shitelasai_2","xukufu_3"];
 var modelPath;
 //Application全局变量
 var app = null;
