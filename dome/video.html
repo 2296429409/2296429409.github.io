@@ -7,10 +7,12 @@
 	<body>
 		<h1>视频流地址在线播放</h1>
 		<input type="text" id="videourl">
-		<button id="run" onclick="runVideo()">播放</button>
+		<button id="runVideo" onclick="runVideo()">播放</button>
+
 		<hr />
 		<span>当前播放地址：</span>
-		<span id="thisurl">####</span>
+		<span id="thisurl">####</span> <br>
+		<button id="down" onclick="down()">下载</button>
 		<hr />
 		<div id="myVideo">
 
@@ -22,6 +24,15 @@
 			console.log('播放：' + window.location.hash.slice(1, window.location.hash.length))
 			run(window.location.hash.slice(1, window.location.hash.length))
 
+			function down() {
+				var span = document.body.querySelector('#thisurl');
+				var a = document.createElement('a');
+				var event = new MouseEvent('click')
+				a.download = 'myVideo' + "_" + new Date().getTime()
+				a.href = span.innerText;
+				a.dispatchEvent(event)
+			}
+
 			function runVideo() {
 				var input = document.querySelector("#videourl")
 				console.log('播放：' + input.value)
@@ -30,17 +41,17 @@
 
 			function run(url) {
 				var span = document.body.querySelector('#thisurl');
-				span.innerText=url
+				span.innerText = url
 				var base = document.body.querySelector('#myVideo');
-				try{
+				try {
 					var divChild = document.body.querySelectorAll('.divChild');
 					base.removeChild(divChild[0])
-				}catch(e){}
+				} catch (e) {}
 				var div = document.createElement("div");
 				div.className = 'divChild'
 				div.innerHTML = '<video width="600" height="400" controls autoplay>' +
-								'<source src="'+url+'" type="video/mp4">' +
-								'</video>';
+					'<source src="' + url + '" type="video/mp4">' +
+					'</video>';
 				base.appendChild(div);
 			}
 		</script>
