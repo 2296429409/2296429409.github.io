@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>在线播放</title> 
+	</head>
+	<body>
+		<h1>视频流地址在线播放</h1>
+		<input type="text" id="videourl">
+		<button id="run" onclick="runVideo()">播放</button>
+		<hr />
+		<span>当前播放地址：</span>
+		<span id="thisurl">####</span>
+		<hr />
+		<div id="myVideo">
+
+		</div>
+
+
+
+		<script>
+			console.log('播放：' + window.location.hash.slice(1, window.location.hash.length))
+			run(window.location.hash.slice(1, window.location.hash.length))
+
+			function runVideo() {
+				var input = document.querySelector("#videourl")
+				console.log('播放：' + input.value)
+				run(input.value)
+			}
+
+			function run(url) {
+				var span = document.body.querySelector('#thisurl');
+				span.innerText=url
+				var base = document.body.querySelector('#myVideo');
+				try{
+					var divChild = document.body.querySelectorAll('.divChild');
+					base.removeChild(divChild[0])
+				}catch(e){}
+				var div = document.createElement("div");
+				div.className = 'divChild'
+				div.innerHTML = '<video width="600" height="400" controls autoplay>' +
+								'<source src="'+url+'" type="video/mp4">' +
+								'</video>';
+				base.appendChild(div);
+			}
+		</script>
+
+	</body>
+</html>
