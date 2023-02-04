@@ -1,5 +1,6 @@
 {
     "m3u8Arr": [
+		"https://2296429409.github.io/app_m3u8/SSIS-588.m3u8",
 		"https://2296429409.github.io/app_m3u8/SSIS-586.m3u8",
 		"https://2296429409.github.io/app_m3u8/ABW-315.m3u8",
 		"https://2296429409.github.io/app_m3u8/SNIS-964.m3u8",
@@ -21,6 +22,7 @@
         "https://2296429409.github.io/app_m3u8/mide-854.m3u8"
     ],
     "m3u8ImgArr": [
+		"https://pics.dmm.co.jp/digital/video/ssis00588/ssis00588pl.jpg",
 		"https://pics.dmm.co.jp/digital/video/ssis00586/ssis00586pl.jpg",
 		"https://image.mgstage.com/images/prestige/abw/315/pb_e_abw-315.jpg",
 		"https://pics.dmm.co.jp/digital/video/snis00964/snis00964pl.jpg",
