@@ -1,5 +1,11 @@
 {
     "m3u8Arr": [
+		"https://2296429409.github.io/app_m3u8/NGOD-176.m3u8",
+		"https://2296429409.github.io/app_m3u8/MRSS-141.m3u8",
+		"https://2296429409.github.io/app_m3u8/MKMP-447.m3u8",
+		"https://2296429409.github.io/app_m3u8/JUL-743.m3u8",
+		"https://2296429409.github.io/app_m3u8/CJOD-318.m3u8",
+		"https://2296429409.github.io/app_m3u8/cjod-247.m3u8",
 		"https://2296429409.github.io/app_m3u8/NACR-618.m3u8",
 		"https://2296429409.github.io/app_m3u8/SSIS-776.m3u8",
 		"https://2296429409.github.io/app_m3u8/SSIS-588.m3u8",
@@ -24,6 +30,12 @@
         "https://2296429409.github.io/app_m3u8/mide-854.m3u8"
     ],
     "m3u8ImgArr": [
+		"https://pics.dmm.co.jp/digital/video/ngod00176/ngod00176pl.jpg",
+		"https://pics.dmm.co.jp/digital/video/mrss00141/mrss00141pl.jpg",
+		"https://pics.dmm.co.jp/digital/video/mkmp00447/mkmp00447pl.jpg",
+		"https://pics.dmm.co.jp/digital/video/jul00743/jul00743pl.jpg",
+		"https://pics.dmm.co.jp/digital/video/cjod00318/cjod00318pl.jpg",
+		"https://pics.dmm.co.jp/digital/video/cjod00247/cjod00247pl.jpg",
 		"https://pics.dmm.co.jp/digital/video/h_237nacr00618/h_237nacr00618pl.jpg",
 		"https://pics.dmm.co.jp/digital/video/ssis00776/ssis00776pl.jpg",
 		"https://pics.dmm.co.jp/digital/video/ssis00588/ssis00588pl.jpg",
