@@ -16,6 +16,8 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.videojs = factory());
 })(this, (function () { 'use strict';
 
+  var m3u8XiaohuPatt = new RegExp(/\?key=\d+$/);
+
   var version$5 = "8.3.0";
 
   /**
@@ -7534,12 +7536,11 @@
     // See https://github.com/naugtur/xhr/issues/100.
 	
 	//@xiaohu m3u8 转换
-	var patt = new RegExp(/\?key=\d+$/);
-	if(patt.test(xhr.url)){
-		xhr.url=xhr.url.replace(patt,'')
-		xhr.setRequestHeader("Range", "bytes=1362-");
+	if(m3u8XiaohuPatt.test(xhr.url)){
+		var keyVaule = xhr.url.slice(xhr.url.indexOf('key=')+4,xhr.url.length)
+		xhr.url=xhr.url.replace(m3u8XiaohuPatt,'')
+		xhr.setRequestHeader("Range", `bytes=${keyVaule}-`);
 	}
-    console.log(xhr.url)
     xhr.send(body || null);
     return xhr;
   }
