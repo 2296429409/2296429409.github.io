@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="//vjs.zencdn.net/8.3.0/video-js.min.css" rel="stylesheet">
+		<script src="video.js"></script>
+	</head>
+	<body>
+
+<!-- 		<video id="my-player" class="video-js" controls preload="auto" poster="//vjs.zencdn.net/v/oceans.png"
+			data-setup='{}'>
+			<source src="//2296429409.github.io/app_m3u8/SSIS-776.m3u8" type="application/x-mpegURL">
+			</source>
+			To view this video please enable JavaScript, and consider upgrading to a
+			web browser that
+			<a href="https://videojs.com/html5-video-support/" target="_blank">
+				supports HTML5 video
+			</a>
+			</p>
+		</video> -->
+		
+		<div id="app">
+			
+		</div>
+
+		<script>
+				var xhr = new XMLHttpRequest();
+				xhr.withCredentials = true;
+
+				xhr.addEventListener("readystatechange", function() {
+				  if(this.readyState === 4) {
+				    console.log(this.responseText);
+					document.getElementById("app").innerHTML='<div>'+this.responseText.slice(0,50)+'</div>'
+				  }
+				});
+
+				xhr.open("GET", "https://gd-hbimg.huaban.com/f03314c8fac3122e4bde6acc33bc95ef9f5fe6904ba4b8-JR7DnO");
+				// xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
+				// xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36");
+				// xhr.setRequestHeader("sec-ch-ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"");
+				// xhr.setRequestHeader("sec-ch-ua-mobile", "?0");
+				// xhr.setRequestHeader("sec-ch-ua-platform", "\"Windows\"");
+				xhr.send();
+			
+			// var xhr={
+			// 	url:"http://localhost:63342/2296429409.github.io?key=4165455"
+			// }
+			// var patt = new RegExp(/\?key=\d+$/);
+			// if(patt.test(xhr.url)){
+			// 	var keyVaule = xhr.url.slice(xhr.url.indexOf('key=')+4,xhr.url.length)
+			// 	xhr.url=xhr.url.replace(patt,'')
+			// 	xhr.setRequestHeader("Range", `bytes=${keyVaule}-`);
+			// }
+		</script>
+	</body>
+</html>
